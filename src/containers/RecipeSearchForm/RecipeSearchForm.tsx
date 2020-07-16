@@ -3,12 +3,14 @@ import s from './RecipeSearchForm.module.scss';
 import Select from '../../components/Select';
 import {search} from '../../services';
 import {Recipe, RequestParams} from '../../services/lib/types';
+import {MealPlan} from '../MealPlan';
 
 const RecipeSearchForm:FC = () => {
     const [params, setParams] = useState<RequestParams>({});
     const [query, setQuery] = useState<string[]>([]);
     const [recipes, setRecipes] = useState<Recipe[] | []>([]);
     const [selectedRecipes, setSelectedRecipes] = useState<Recipe[] | []>([]);
+    const [showMealPlan, setShowMealPlan] = useState(false);
 
 
     const handleSelect = (type:string, e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,6 +46,12 @@ const RecipeSearchForm:FC = () => {
         setSelectedRecipes(prevSelected => [...prevSelected, recipe])
     }
 
+    const handleRemove = (recipe: Recipe) => {
+        console.log('recipe', recipe)
+        const updatedRecipes = selectedRecipes.filter(selectedRecipe => selectedRecipe.uri !== recipe.uri);
+        setSelectedRecipes(updatedRecipes);
+    }
+
     const isSelected = (recipe: Recipe) => {
         const result = selectedRecipes.find(selectedRecipe => selectedRecipe.uri === recipe.uri);
         return !!result;
@@ -51,6 +59,7 @@ const RecipeSearchForm:FC = () => {
 
 
     return (
+        <>
         <div>
             <div className="row">
                     <div className={`u-full-width ${s.boldStyle}`}>
@@ -117,7 +126,17 @@ const RecipeSearchForm:FC = () => {
                     ))}
                 </div>
             </div>
+            {selectedRecipes.length > 0 && (
+                <div className={s.fixedBar}>
+                    <button className="u-pull-right" value="Search" type="submit" onClick={() => setShowMealPlan(true)}>
+                        View meal plan
+                    </button>
+                </div>
+            )}
+            
         </div>
+        {showMealPlan && <MealPlan recipes={selectedRecipes} onRemove={handleRemove} show={setShowMealPlan} />}
+        </>
     );
 };
 

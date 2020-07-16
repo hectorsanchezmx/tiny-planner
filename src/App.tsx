@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipeSearchForm from './components/RecipeSearchForm/RecipeSearchForm';
+import {RecipeSearchForm} from './containers/RecipeSearchForm';
 
 function App() {
     return (
