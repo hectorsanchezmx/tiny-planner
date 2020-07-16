@@ -15,7 +15,7 @@ export const Select: FC<Select> = ({label, name, options, onSelect }) => {
             <br />
             <select className={s.selectStyle} multiple name={name} onChange={(e) => onSelect(name, e)}>
                 {options && options.map(option => (
-                    <option value={option}>{option}</option>
+                    <option key={option} value={option}>{option}</option>
                 ))}
             </select>
         </label>

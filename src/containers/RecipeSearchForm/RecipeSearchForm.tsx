@@ -120,7 +120,7 @@ const RecipeSearchForm:FC = () => {
                 <div className={`${s.recipes} u-full-width`}>
                     <h3>Available recipes</h3>
                     { recipes && (recipes as any[]).map(item => (
-                        <div className={s.listItem}>
+                        <div key={item.recipe.uri} className={s.listItem}>
                             {item.recipe.label}
                             <button disabled={isSelected(item.recipe)} className={isSelected(item.recipe) ? `${s.disabled} u-pull-right` : "u-pull-right"} value="Search" type="submit" onClick={() => handleAdd(item.recipe)}>
                                 Add to meal plan

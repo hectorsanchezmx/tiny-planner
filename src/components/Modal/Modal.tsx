@@ -1,4 +1,4 @@
-import React, { FC, Dispatch, SetStateAction, useState } from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import s from './Modal.module.scss';
 
 const Modal:FC<{show: Dispatch<SetStateAction<boolean>>}> = ({show, children}) => {
