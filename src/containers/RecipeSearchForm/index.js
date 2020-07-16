@@ -1,1 +1,2 @@
-export { default as RecipeSearchForm } from './RecipeSearchForm';
+import RecipeSearchForm from './RecipeSearchForm';
+export default RecipeSearchForm;

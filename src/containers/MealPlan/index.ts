@@ -1,1 +1,2 @@
-export { default as MealPlan } from './MealPlan';
+import MealPlan from './MealPlan';
+export default MealPlan;

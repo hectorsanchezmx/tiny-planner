@@ -1,17 +1,3 @@
-.container {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background: #f8f8fb;
-    padding-top: 10em;
-}
-
-.mealPlan {
-    max-width: 800px;
-    margin: auto;
-}
 
 .listItem {
     background: #ffffff;
@@ -23,19 +9,6 @@
 
 p, ul, li {
     margin: 0;
-}
-
-.close {
-    position: absolute;
-    right: 1em;
-    top: 1em;
-    font-size: 20px;
-    height: 40px;
-    width: 40px;
-    background: #ffffff;
-    border-radius: 100px;
-    text-align: center;
-    cursor: pointer;
 }
 
 .remove {

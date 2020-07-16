@@ -1,9 +1,12 @@
 import React, { FC, useState } from 'react';
 import s from './RecipeSearchForm.module.scss';
+
 import Select from '../../components/Select';
+import Modal from '../../components/Modal';
+
 import {search} from '../../services';
 import {Recipe, RequestParams} from '../../services/lib/types';
-import {MealPlan} from '../MealPlan';
+import MealPlan from '../MealPlan';
 
 const RecipeSearchForm:FC = () => {
     const [params, setParams] = useState<RequestParams>({});
@@ -135,7 +138,11 @@ const RecipeSearchForm:FC = () => {
             )}
             
         </div>
-        {showMealPlan && <MealPlan recipes={selectedRecipes} onRemove={handleRemove} show={setShowMealPlan} />}
+        {showMealPlan && 
+            <Modal show={setShowMealPlan}>
+                <MealPlan recipes={selectedRecipes} onRemove={handleRemove} />
+            </Modal>
+        }
         </>
     );
 };
