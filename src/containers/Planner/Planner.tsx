@@ -41,7 +41,8 @@ const Planner:FC = () => {
     const handleSearch = async() => {
         try {
             const {data} = await search({...params, q:query})
-            setRecipes(data.hits)
+            const recipes = data.hits.map((hit: {recipe: Recipe})=> hit.recipe)
+            setRecipes(recipes)
             console.log('data.hits', data.hits)
         } catch(error) {
             
