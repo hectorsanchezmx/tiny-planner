@@ -1,5 +1,5 @@
 import React from 'react';
-import RecipeSearchForm from './containers/RecipeSearchForm';
+import Planner from './containers/Planner';
 
 function App() {
     return (
@@ -9,7 +9,7 @@ function App() {
                     <header className="App-header">Surely Meal Planner</header>
                 </div>
             </div>
-            <RecipeSearchForm />
+            <Planner />
         </div>
     );
 }

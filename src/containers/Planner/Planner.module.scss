@@ -1,0 +1,11 @@
+.fixedBar {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    border-top: 1px solid #ebebeb;
+    width: 80%;
+    background: #ffffff;
+    padding: 1em;
+    box-shadow: 0 -5px 25px 0 #00000024;
+}
