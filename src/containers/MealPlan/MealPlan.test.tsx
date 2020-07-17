@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { screen } from '@testing-library/dom'
-import {DietLabel, HealthLabel, NutrientInfo, Recipe} from '../../services/lib/types';
+import { render, fireEvent, getAllByText, waitFor, screen } from '@testing-library/react';
+import {DietLabel, HealthLabel, Recipe} from '../../services/lib/types';
+import MealPlan from './MealPlan';
 
-import SearchResults, {SearchResultsProps} from './SearchResults';
+window.MutationObserver = require("mutation-observer");
 
 describe('SearchResults Container', () => {
-    const recipes: Recipe[] = [{
+    let recipes: Recipe[] = [{
         uri: 'http://www.edamam.com/ontologies/edamam.owl#recipe_4bb99424e1bbc40d3cd1d891883d6745',
         label: 'Frothy Iced Matcha Green Tea Recipe',
         image: 'https://www.edamam.com/web-img/643/643d4bad9cc21284f7f52b1b9b862848.jpg',
@@ -16,6 +16,10 @@ describe('SearchResults Container', () => {
         dietLabels: [
             DietLabel.HighProtein,
             DietLabel.LowFat,
+        ],
+        ingredientLines: [
+            '2 teaspoons (6g) Japanese matcha green tea (see note above)',
+            '8 ounces (235ml) cold water'
         ],
         healthLabels: [
             HealthLabel.Vegan,
@@ -52,33 +56,19 @@ describe('SearchResults Container', () => {
             quantity: 0.06,
             unit: 'kcal'
         }],
-        ingredientLines: [
-            '2 teaspoons (6g) Japanese matcha green tea (see note above)',
-            '8 ounces (235ml) cold water'
-        ],
     }]
 
-    const props: SearchResultsProps = {
+    const props = {
         recipes: recipes,
-        isSelected: () => true,
-        handleAdd: () => {}
+        onRemove: (recipe: Recipe) => {
+            recipes = recipes.filter(selectedRecipe => selectedRecipe.uri !== recipe.uri);
+        },
     }
-    it('should render results', () => {
-        const { getByTestId } = render(<SearchResults {...props} />);
-        recipes.forEach(recipe=>{
-            const element = getByTestId(recipe.uri)
-            expect(element).toBeInTheDocument();
-        })
-    });
-    it('should disable button when selecting recipe', () => {
-        const { getByTestId } = render(<SearchResults {...props} />);
-        interface Button extends HTMLElement {
-            disabled?: boolean
-        }
-        recipes.forEach(recipe=>{
-            const button: Button = getByTestId(`button${recipe.uri}`);
-            fireEvent.click(button)
-            expect(button.disabled) 
-        })
+
+    it('should show selected recipes in Meal Plan', () => {
+        const { getByTestId, getByText } = render(<MealPlan {...props} />);
+
+        const element = getByTestId('item-0')
+        expect(element).toBeInTheDocument();
     });
 });

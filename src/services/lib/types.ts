@@ -12,20 +12,20 @@ export enum DietLabel {
 }   
 
 export enum HealthLabel {
-    vegan = 'vegan',
-    vegetarian = 'vegetarian',
-    paleo = 'paleo',
-    dairyFree = 'dairy-free',
-    glutenFree = 'gluten-free',
-    wheatFree = 'wheat-free',
-    fatFree = 'fat-free',
-    lowSugar = 'low-sugar',
-    eggFree = 'egg-free',
-    peanutFree = 'peanut-free',
-    treeNutFree = 'tree-nut-free',
-    soyFree = 'soy-free',
-    fishFree = 'fish-free',
-    shellfishFree = 'shellfish-free',
+    Vegan = 'vegan',
+    Vegetarian = 'vegetarian',
+    Paleo = 'paleo',
+    DairyFree = 'dairy-free',
+    GlutenFree = 'gluten-free',
+    WheatFree = 'wheat-free',
+    FatFree = 'fat-free',
+    LowSugar = 'low-sugar',
+    EggFree = 'egg-free',
+    PeanutFree = 'peanut-free',
+    TreeNutFree = 'tree-nut-free',
+    SoyFree = 'soy-free',
+    FishFree = 'fish-free',
+    ShellfishFree = 'shellfish-free',
 }
 
 export interface Measure  {
@@ -67,4 +67,5 @@ export interface Recipe {
     totalDaily: NutrientInfo[], //NutrientInfo[], % daily value for entire recipe
     dietLabels: DietLabel[], //diet labels
     healthLabels: HealthLabel[], //health labels
+    ingredientLines: string[]
 }

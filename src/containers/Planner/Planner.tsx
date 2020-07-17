@@ -30,7 +30,6 @@ const Planner:FC = () => {
                 values.push(options[i].value);
             }
         }
-        console.log('values', values)
 
         setParams(prevParams => ({
             ...prevParams,
@@ -38,14 +37,15 @@ const Planner:FC = () => {
         }))
     }
     
-    const handleSearch = async() => {
+    const handleSearch = async() => {   
         try {
             const {data} = await search({...params, q:query})
+
             const recipes = data.hits.map((hit: {recipe: Recipe})=> hit.recipe)
+
             setRecipes(recipes)
-            console.log('data.hits', data.hits)
         } catch(error) {
-            
+            console.log('error', error)
         }
     }
 
@@ -54,7 +54,6 @@ const Planner:FC = () => {
     }
 
     const handleRemove = (recipe: Recipe) => {
-        console.log('recipe', recipe)
         const updatedRecipes = selectedRecipes.filter(selectedRecipe => selectedRecipe.uri !== recipe.uri);
         setSelectedRecipes(updatedRecipes);
     }

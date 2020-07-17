@@ -3,7 +3,7 @@ import s from './SearchResults.module.scss';
 
 import {Recipe} from '../../services/lib/types';
 
-type SearchResultsProps = {
+export type SearchResultsProps = {
     recipes: Recipe[],
     isSelected: Function,
     handleAdd: Function
@@ -18,7 +18,12 @@ const SearchResults:FC<SearchResultsProps> = ({recipes, isSelected, handleAdd}) 
                 { recipes && (recipes as any[]).map(item => (
                     <li key={item.uri} className={s.listItem} data-testid={item.uri}>
                         {item.label}
-                        <button disabled={isSelected(item)} className={isSelected(item) ? `${s.disabled} u-pull-right` : "u-pull-right"} value="Search" type="submit" onClick={() => handleAdd(item)}>
+                        <button 
+                            disabled={isSelected(item)} 
+                            className={isSelected(item) ? `${s.disabled} u-pull-right` : "u-pull-right"} 
+                            onClick={() => handleAdd(item)}
+                            data-testid={`button${item.uri}`}
+                        >
                             Add to meal plan
                         </button>
                     </li>

@@ -6,16 +6,13 @@ const baseURL = `https://api.edamam.com/search?app_id=${config.APP_ID}&app_key=$
 
 
 export const search = (params:RequestParams)=> {
-    console.log('params', params)
     const strings = Object.keys(params).map(key => params[key].map(param => `&${key}=${[param]}` ))
 
-    console.log('strings', strings)
     let queryString = strings.join("").replace(/,/g, '');
 
     if (!params.q.length) {
         queryString = queryString.concat(`&q= `);
     }
 
-    console.log('queryString', queryString)
     return axios.get(`${baseURL}${queryString}`)    
 }
