@@ -6,7 +6,7 @@ Install dependencies running:
 or 
 ```npm install```
 
-# API Config
+## API Config
 Create an account in [Edaman's site](https://developer.edamam.com/), and grab the `APP_ID` and `APP_KEY`. Add those in the `config.js` file at the root of this project
 
 ## Run app
